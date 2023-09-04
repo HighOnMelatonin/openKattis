@@ -1,9 +1,5 @@
 # Graduation
-'''
-Create a stack for every column, as the cursor parses through the column, add every unique letter to the stack
 
-If a letter in the column 
-'''
 line = input()
 n, m, k = line.split(' ')
 
@@ -49,5 +45,4 @@ BCDAE
 CADBA
 
 Expected output: 1
-
 '''
