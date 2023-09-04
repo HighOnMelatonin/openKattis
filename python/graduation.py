@@ -39,3 +39,15 @@ for i in range(int(m)):
 
 print(hats)
 print(len(hats) - 1)
+
+'''
+Fails test case 5:
+
+3 5 5
+ABECE
+BCDAE
+CADBA
+
+Expected output: 1
+
+'''
