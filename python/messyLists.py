@@ -1,58 +1,45 @@
 # Messy lists
 
-n = input()
+n = int(input())
 line = input()
 
 nums = line.split(' ')
 
 # Some sorting algorithm
 sortednums = []
-for item in nums:
-    sortednums.append(item)
+for i in nums:
+    sortednums.append(i)
 
-def merge(array):
-    if len(array) > 1:
-        mid = len(array)//2
+def quick(array, start, end):
+    if start < end:
+        low = start
+        high = end
+        pivot = array[end]
 
-        left = array[:mid]
-        right = array[mid:]
+        while low < high:
+            while high > 0 and array[high] >= pivot:
+                high -= 1
 
-        merge(left)
-        merge(right)
+            while low < end and array[low] < pivot:
+                low += 1
 
-        i = j = k = 0
-        while i < len(left) and j < len(right):
-            if int(left[i]) < int(right[j]):
-                array[k] = left[i]
-                i += 1
+            if low < high:
+                array[high], array[low] = array[low], array[high]
 
-            else:
-                array[k] = right[j]
-                j += 1
+        array[low], array[end] = array[end], array[low]
 
-            k += 1
+        quick(array,start, low - 1)
+        quick(array, low + 1, end)
 
-        while i < len(left):
-            array[k] = left[i]
-            k += 1
-            i += 1
-
-        while j < len(right):
-            array[k] = right[j]
-            k += 1
-            j += 1
-
+    return array
 
 output = 0
-merge(sortednums)
+sortednums = quick(sortednums, 0, len(sortednums) - 1)
 
-for i in range(len(sortednums)):
-    if sortednums[i] == nums[i]:
-        continue
-    
-    else:
+for i in range(n):
+    if sortednums[i] != nums[i]:
         output += 1
 
 print(output)
 
-# Incomplete solution, failed a few test cases, exceeded runtime
+# Incomplete solution, failed a few test cases
